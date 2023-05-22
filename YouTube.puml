@@ -1,0 +1,48 @@
+@startuml
+left to right direction
+actor "Bruger" as fc
+rectangle Youtube {
+  usecase "Log Ind" as UC1
+  usecase "Forside" as UC2
+
+  package "Forside" as Forside {
+    usecase "Account" as UC3
+    usecase "Kategori" as UC4
+    usecase "Video" as UC5
+    usecase "Søg" as UC6
+    package "Video" as Video{
+        usecase "Afspil" as UC7
+        usecase "Like" as UC8
+        usecase "Dislike" as UC9
+        usecase "Kommentar" as UC10
+        usecase "Abonner" as UC11
+        usecase "Del" as UC12
+        usecase "Gem" as UC13
+        usecase "Rapportér" as UC14
+    }
+    package "Kanal" as Kanal{
+        usecase "Abonner" as UC15
+        usecase "Bliv Medlem" as UC16
+        usecase "Rapportér" as UC17
+        usecase "Del" as UC18
+    }
+    package "Account" as Account{
+        usecase "Log Ud" as UC19
+        usecase "Rediger" as UC20
+        usecase "Slet" as UC21
+        usecase "Upload" as UC22
+    }
+  }
+}
+fc --> UC1
+UC1 --> UC2
+UC2 -left-> Forside
+UC3 --> UC4
+UC3 <--> UC5
+UC3 --> UC6
+UC6 --> UC5
+UC4 --> UC5
+UC3 --> Account
+UC5 --> Video
+UC5 --> Kanal
+@enduml
